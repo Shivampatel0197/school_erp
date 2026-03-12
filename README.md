@@ -1,6 +1,6 @@
 # EduSaaS - Multi-Tenant School ERP Platform
 
-A modern, scalable multi-tenant School ERP SaaS platform built with **Next.js 14**, **Supabase (PostgreSQL)**, **Clerk Authentication**, and **Stripe**. 
+A modern, scalable multi-tenant School ERP SaaS platform built with **Next.js 14**, **Supabase (PostgreSQL)**, **Clerk Authentication**, and **Razorpay**. 
 
 Ready to manage unlimited schools, teachers, students, and parents with isolated environments.
 
@@ -11,7 +11,7 @@ Ready to manage unlimited schools, teachers, students, and parents with isolated
 - **Admin Module**: Manage students, teachers, classes, subjects, fee payments, and publish school-wide announcements.
 - **Teacher Module**: Manage schedules, take daily attendance, create assignments, and enter exam marks.
 - **Student Module**: Access timetables, submit assignments, view exam results, and check attendance.
-- **Parent Portal**: Track multiple dependents, view academic progress, and securely pay school invoices via Stripe Checkout.
+- **Parent Portal**: Track multiple dependents, view academic progress, and securely pay school invoices via Razorpay integration (supporting UPI, Cards, NetBanking).
 
 ## Tech Stack
 
@@ -19,7 +19,7 @@ Ready to manage unlimited schools, teachers, students, and parents with isolated
 - **Charts**: Recharts for attendance and revenue visualizations.
 - **Backend & Database**: Supabase PostgreSQL.
 - **Auth**: Clerk (Role-based authentication).
-- **Payments**: Stripe Checkout.
+- **Payments**: Razorpay.
 - **Deployment**: Vercel.
 
 ## Setup Instructions
@@ -54,7 +54,7 @@ npm run dev
 2. Sign in or create a Vercel account.
 3. Click **Add New Project** and select your GitHub repository.
 4. Set the **Framework Preset** to Next.js.
-5. Under **Environment Variables**, configure all variables found in your `.env.local` file (Clerk keys, Supabase URLs, Stripe secrets).
+5. Under **Environment Variables**, configure all variables found in your `.env.local` file (Clerk keys, Supabase URLs, Razorpay secrets).
 6. Click **Deploy**. Vercel will build the application, and handle the App Router and API routes perfectly!
 
 ## License

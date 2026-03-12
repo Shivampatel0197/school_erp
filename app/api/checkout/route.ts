@@ -1,41 +1,30 @@
 import { NextResponse } from "next/server";
-import Stripe from "stripe";
+import Razorpay from "razorpay";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_placeholder", {
-    apiVersion: "2026-02-25.clover",
+const razorpay = new Razorpay({
+  key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "rzp_test_placeholder",
+  key_secret: process.env.RAZORPAY_KEY_SECRET || "secret_placeholder",
 });
 
 export async function POST(req: Request) {
-    try {
-        const { amount, description } = await req.json();
+  try {
+    const { amount } = await req.json();
 
-        if (!amount || amount <= 0) {
-            return NextResponse.json({ error: "Invalid amount" }, { status: 400 });
-        }
-
-        const session = await stripe.checkout.sessions.create({
-            payment_method_types: ["card"],
-            line_items: [
-                {
-                    price_data: {
-                        currency: "usd",
-                        product_data: {
-                            name: description || "School Fees",
-                            description: "EduSaaS Fee Payment",
-                        },
-                        unit_amount: amount * 100, // Stripe expects amount in cents
-                    },
-                    quantity: 1,
-                },
-            ],
-            mode: "payment",
-            success_url: `${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"}/parent?success=true`,
-            cancel_url: `${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"}/parent?canceled=true`,
-        });
-
-        return NextResponse.json({ url: session.url });
-    } catch (error: any) {
-        console.error("Stripe error:", error.message);
-        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    if (!amount || amount <= 0) {
+      return NextResponse.json({ error: "Invalid amount" }, { status: 400 });
     }
+
+    const options = {
+      amount: amount * 100, // Razorpay expects amount in smallest currency unit (paise)
+      currency: "INR",
+      receipt: `receipt_order_${Math.random().toString(36).substring(7)}`,
+    };
+
+    const order = await razorpay.orders.create(options);
+
+    return NextResponse.json(order);
+  } catch (error: any) {
+    console.error("Razorpay error:", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  }
 }
