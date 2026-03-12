@@ -32,7 +32,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="space-x-4">
-                <Link href="/admin">
+                <Link href="/dashboard">
                   <Button size="lg" className="h-12 px-8">
                     Go to Dashboard <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
