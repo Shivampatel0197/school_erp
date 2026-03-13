@@ -16,8 +16,15 @@ export default async function DashboardRedirect() {
     redirect('/student');
   } else if (role === 'parent') {
     redirect('/parent');
-  } else {
-    // Basic fallback so unassigned users aren't trapped in a dead page
-    redirect('/student');
   }
+
+  // Graceful fallback for unassigned users
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4 text-center">
+      <h1 className="text-3xl font-bold mb-4">Welcome to EduSaaS</h1>
+      <p className="text-muted-foreground max-w-md">
+        Your account is currently pending role assignment. Please contact your school administrator to get access to your dashboard.
+      </p>
+    </div>
+  );
 }

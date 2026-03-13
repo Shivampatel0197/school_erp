@@ -107,8 +107,8 @@ export default function TeachersPage() {
                 </div>
 
                 <Dialog open={isOpen} onOpenChange={setIsOpen}>
-                    <DialogTrigger asChild>
-                        <Button><Plus className="mr-2 h-4 w-4" /> Add Teacher</Button>
+                    <DialogTrigger render={<Button />}>
+                        <Plus className="mr-2 h-4 w-4" /> Add Teacher
                     </DialogTrigger>
                     <DialogContent>
                         <DialogHeader>
@@ -188,11 +188,9 @@ export default function TeachersPage() {
                                     <TableCell>{teacher.joined_date}</TableCell>
                                     <TableCell>
                                         <DropdownMenu>
-                                            <DropdownMenuTrigger asChild>
-                                                <Button variant="ghost" className="h-8 w-8 p-0">
-                                                    <span className="sr-only">Open menu</span>
-                                                    <MoreHorizontal className="h-4 w-4" />
-                                                </Button>
+                                            <DropdownMenuTrigger render={<Button variant="ghost" className="h-8 w-8 p-0" />}>
+                                                <span className="sr-only">Open menu</span>
+                                                <MoreHorizontal className="h-4 w-4" />
                                             </DropdownMenuTrigger>
                                             <DropdownMenuContent align="end">
                                                 <DropdownMenuItem>

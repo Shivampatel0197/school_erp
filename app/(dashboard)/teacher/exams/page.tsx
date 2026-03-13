@@ -39,8 +39,8 @@ export default function ExamsGradingPage() {
                 </div>
 
                 <Dialog>
-                    <DialogTrigger>
-                        <Button><Plus className="mr-2 h-4 w-4" /> Create Exam</Button>
+                    <DialogTrigger render={<Button />}>
+                        <Plus className="mr-2 h-4 w-4" /> Create Exam
                     </DialogTrigger>
                     <DialogContent>
                         <DialogHeader>
