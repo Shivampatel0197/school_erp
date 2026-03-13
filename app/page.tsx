@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, GraduationCap, CheckCircle2, ShieldCheck, Zap, Globe, Users } from "lucide-react";
+import { ArrowRight, GraduationCap, CheckCircle2, ShieldCheck, Zap, Globe, Users, Menu } from "lucide-react";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 export default async function Home() {
   const { userId } = await auth();
@@ -35,6 +36,32 @@ export default async function Home() {
               <Button className="rounded-full px-6 shadow-md shadow-primary/20">Get Started</Button>
             </Link>
           </nav>
+
+          {/* Mobile Menu Trigger */}
+          <div className="md:hidden">
+            <Dialog>
+              <DialogTrigger render={<Button variant="ghost" size="icon" />}>
+                <Menu className="h-6 w-6" />
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-xs h-full flex flex-col justify-start p-8">
+                <DialogHeader className="mb-8">
+                  <DialogTitle className="text-2xl font-black text-primary">EduSaaS</DialogTitle>
+                </DialogHeader>
+                <div className="flex flex-col gap-6">
+                  <Link href="#features" className="text-lg font-bold">Features</Link>
+                  <Link href="#solutions" className="text-lg font-bold">Solutions</Link>
+                  <Link href="#pricing" className="text-lg font-bold">Pricing</Link>
+                  <div className="h-px bg-border my-2"></div>
+                  <Link href="/sign-in">
+                    <Button variant="outline" className="w-full h-12 rounded-xl">Log In</Button>
+                  </Link>
+                  <Link href="/sign-up">
+                    <Button className="w-full h-12 rounded-xl">Get Started</Button>
+                  </Link>
+                </div>
+              </DialogContent>
+            </Dialog>
+          </div>
         </div>
       </header>
 
@@ -59,13 +86,15 @@ export default async function Home() {
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
                 <Link href="/sign-up">
-                  <Button size="lg" className="rounded-full h-14 px-10 text-lg shadow-xl shadow-primary/30">
+                  <Button size="lg" className="rounded-full h-14 px-10 text-lg shadow-xl shadow-primary/30 w-full sm:w-auto">
                     Deploy to your School <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
-                <Button variant="outline" size="lg" className="rounded-full h-14 px-10 text-lg bg-white/50">
-                  Book a Demo
-                </Button>
+                <Link href="#pricing">
+                  <Button variant="outline" size="lg" className="rounded-full h-14 px-10 text-lg bg-white/50 w-full sm:w-auto">
+                    Book a Demo
+                  </Button>
+                </Link>
               </div>
               
               <div className="flex items-center justify-center gap-8 pt-8 opacity-50 grayscale hover:grayscale-0 transition-all">
@@ -210,7 +239,9 @@ export default async function Home() {
                   <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> Teacher & Parent Apps</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> Exams & Result Entry</li>
                 </ul>
-                <Button className="w-full rounded-full bg-primary hover:bg-primary/90">Get Started Now</Button>
+                <Link href="/sign-up">
+                  <Button className="w-full rounded-full bg-primary hover:bg-primary/90">Get Started Now</Button>
+                </Link>
               </div>
 
               {/* Enterprise Plan */}
@@ -237,11 +268,11 @@ export default async function Home() {
                 <p className="text-primary-foreground/80 max-w-xl mx-auto text-lg italic">Join over 200 institutions currently scaling with EduSaaS. One-click setup for any school.</p>
                 <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
                   <Link href="/sign-up">
-                    <Button size="lg" variant="secondary" className="rounded-full h-14 px-10 text-lg font-bold">
+                    <Button size="lg" variant="secondary" className="rounded-full h-14 px-10 text-lg font-bold w-full sm:w-auto">
                       Subscribe Your School <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
                   </Link>
-                  <Button size="lg" variant="outline" className="rounded-full h-14 px-10 text-lg border-white/20 hover:bg-white/10">
+                  <Button size="lg" variant="outline" className="rounded-full h-14 px-10 text-lg border-white/20 hover:bg-white/10 w-full sm:w-auto">
                     Request Pricing PDF
                   </Button>
                 </div>
