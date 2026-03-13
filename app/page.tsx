@@ -24,14 +24,14 @@ export default async function Home() {
       {/* Navbar */}
       <header className="fixed top-0 w-full z-50 glass border-b">
         <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="bg-primary p-2 rounded-xl text-white shadow-lg shadow-primary/20">
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="bg-primary p-2 rounded-xl text-white shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
               <GraduationCap className="h-6 w-6" />
             </div>
             <span className="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600 tracking-tight">
               Campusore
             </span>
-          </div>
+          </Link>
           
           <nav className="hidden md:flex items-center gap-8">
             <Link className="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors" href="#features">Features</Link>
@@ -264,33 +264,35 @@ export default async function Home() {
                   <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-green-500" /> Basic Attendance</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-green-500" /> Admin Dashboard</li>
                 </ul>
-                <Button variant="outline" className="w-full rounded-full">Coming Soon</Button>
+                <Button variant="outline" className="w-full rounded-2xl h-14" disabled>Coming Soon</Button>
               </div>
               
               {/* Pro Plan */}
-              <div className="border-2 border-primary p-8 rounded-3xl bg-slate-900 text-white relative shadow-xl scale-105">
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white px-4 py-1 rounded-full text-xs font-bold font-sans uppercase">Most Popular</div>
-                <h3 className="text-xl font-bold mb-2">Standard Institution</h3>
-                <div className="text-4xl font-black mb-6 text-primary">₹12,499<span className="text-sm font-normal text-slate-400">/mo</span></div>
-                <ul className="space-y-4 mb-8 text-left">
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> Up to 1000 Students</li>
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> Full Fee Management</li>
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> Teacher & Parent Apps</li>
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> Exams & Result Entry</li>
+              <div className="border-2 border-primary p-12 rounded-[40px] bg-slate-950 text-white relative shadow-2xl scale-105 z-10">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white px-6 py-1.5 rounded-full text-xs font-black uppercase tracking-widest">Most Popular</div>
+                <h3 className="text-2xl font-black mb-2">Standard Institution</h3>
+                <div className="text-5xl font-black mb-8 text-primary">₹12,499<span className="text-sm font-medium text-slate-500 tracking-normal">/month</span></div>
+                <ul className="space-y-4 mb-10 text-left">
+                  <li className="flex items-center gap-3 text-slate-300 font-medium"><CheckCircle2 className="h-5 w-5 text-primary" /> Up to 1000 Students</li>
+                  <li className="flex items-center gap-3 text-slate-300 font-medium"><CheckCircle2 className="h-5 w-5 text-primary" /> Full Fee Management</li>
+                  <li className="flex items-center gap-3 text-slate-300 font-medium"><CheckCircle2 className="h-5 w-5 text-primary" /> Teacher & Parent Apps</li>
+                  <li className="flex items-center gap-3 text-slate-300 font-medium"><CheckCircle2 className="h-5 w-5 text-primary" /> Exams & Result Entry</li>
                 </ul>
-                <Button render={<Link href="/sign-up" />} className="w-full rounded-full bg-primary hover:bg-primary/90">Get Started Now</Button>
+                <Button render={<Link href={userId ? "/dashboard" : "/sign-up"} />} className="w-full h-16 rounded-2xl text-lg font-black shadow-xl shadow-primary/30">
+                  {userId ? "Upgrade Now" : "Get Started Now"}
+                </Button>
               </div>
-
+ 
               {/* Enterprise Plan */}
-              <div className="border p-8 rounded-3xl bg-white hover:border-primary transition-all shadow-sm">
-                <h3 className="text-xl font-bold mb-2">Multi-School Chain</h3>
-                <div className="text-4xl font-black mb-6">Custom</div>
-                <ul className="space-y-4 mb-8 text-left">
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-green-500" /> Unlimited Students</li>
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-green-500" /> Dedicated Account Manager</li>
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-green-500" /> Custom Domain & Branding</li>
+              <div className="border border-slate-100 p-10 rounded-[40px] bg-white hover:border-primary/20 transition-all shadow-sm">
+                <h3 className="text-2xl font-black mb-2">Multi-School Chain</h3>
+                <div className="text-5xl font-black mb-8">Custom</div>
+                <ul className="space-y-4 mb-10 text-left">
+                  <li className="flex items-center gap-3 text-slate-500 font-medium"><CheckCircle2 className="h-5 w-5 text-primary" /> Unlimited Students</li>
+                  <li className="flex items-center gap-3 text-slate-500 font-medium"><CheckCircle2 className="h-5 w-5 text-primary" /> Dedicated Account Manager</li>
+                  <li className="flex items-center gap-3 text-slate-500 font-medium"><CheckCircle2 className="h-5 w-5 text-primary" /> Custom Domain & Branding</li>
                 </ul>
-                <Button variant="outline" className="w-full rounded-full">Contact Sales</Button>
+                <Button render={<Link href="mailto:sales@campusore.com" />} variant="outline" className="w-full h-16 rounded-2xl text-lg font-bold">Contact Sales</Button>
               </div>
             </div>
           </div>
@@ -304,10 +306,10 @@ export default async function Home() {
                 <h2 className="text-5xl md:text-8xl font-black tracking-tighter leading-[0.8]">Ready to scale? <br /> <span className="text-primary italic">Join the elite.</span></h2>
                 <p className="text-slate-400 max-w-xl mx-auto text-xl font-medium">Campusore is chosen by over 500 institutions for its uncompromising performance and security. Deploy in minutes.</p>
                 <div className="pt-8 flex flex-col sm:flex-row gap-6 justify-center">
-                  <Button render={<Link href="/sign-up" />} size="lg" className="rounded-2xl h-16 px-12 text-lg font-black shadow-xl shadow-primary/20 w-full sm:w-auto">
-                    Get Started Instantly <ArrowRight className="ml-2 h-5 w-5" />
+                  <Button render={<Link href={userId ? "/dashboard" : "/sign-up"} />} size="lg" className="rounded-2xl h-16 px-12 text-lg font-black shadow-xl shadow-primary/20 w-full sm:w-auto">
+                    {userId ? "Go to Dashboard" : "Get Started Instantly"} <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
-                  <Button size="lg" variant="outline" className="rounded-2xl h-16 px-12 text-lg font-bold border-white/10 hover:bg-white/5 w-full sm:w-auto backdrop-blur-md">
+                  <Button render={<Link href="mailto:support@campusore.com" />} size="lg" variant="outline" className="rounded-2xl h-16 px-12 text-lg font-bold border-white/10 hover:bg-white/5 w-full sm:w-auto backdrop-blur-md">
                     Talk to our Solution Team
                   </Button>
                 </div>
@@ -325,12 +327,12 @@ export default async function Home() {
       <footer className="bg-slate-900 py-16 text-white overflow-hidden relative">
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-12">
-            <div className="flex items-center gap-3">
-              <div className="bg-primary p-2 rounded-xl text-white">
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="bg-primary p-2 rounded-xl text-white group-hover:scale-110 transition-transform">
                 <GraduationCap className="h-6 w-6" />
               </div>
               <span className="text-2xl font-black tracking-tight">Campusore</span>
-            </div>
+            </Link>
             
             <div className="flex gap-12 text-sm text-slate-400">
               <Link href="#" className="hover:text-white transition-colors">Documentation</Link>
