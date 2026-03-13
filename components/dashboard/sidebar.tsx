@@ -47,14 +47,13 @@ export function SidebarContent() {
         { title: "Classes", href: "/admin/classes", icon: BookOpen },
         { title: "Fees", href: "/admin/fees", icon: FileText },
         { title: "Announcements", href: "/admin/announcements", icon: Bell },
-        { title: "Settings", href: "/admin/settings", icon: Settings },
     ];
 
     const teacherLinks = [
         { title: "Dashboard", href: "/teacher", icon: BarChart3 },
         { title: "Attendance", href: "/teacher/attendance", icon: Users },
         { title: "Assignments", href: "/teacher/assignments", icon: FileText },
-        { title: "Timetable", href: "/teacher/timetable", icon: Calendar },
+        { title: "Exams", href: "/teacher/exams", icon: GraduationCap },
     ];
 
     const studentLinks = [
