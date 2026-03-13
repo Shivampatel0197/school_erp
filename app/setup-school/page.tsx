@@ -69,7 +69,7 @@ export default async function SetupSchoolPage() {
                   required
                   type="email"
                   name="contactEmail"
-                  defaultValue={user?.emailAddresses[0].emailAddress}
+                  defaultValue={user?.emailAddresses?.[0]?.emailAddress || ""}
                   className="w-full h-14 pl-12 pr-4 rounded-2xl border border-slate-200 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all font-medium"
                 />
               </div>

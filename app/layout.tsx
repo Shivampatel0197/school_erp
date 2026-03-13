@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   description: "Modern Multi-Tenant School ERP",
 };
 
+export const dynamic = "force-dynamic";
+
 export default function RootLayout({
   children,
 }: Readonly<{
