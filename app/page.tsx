@@ -9,10 +9,9 @@ export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const { userId } = await auth();
+  
+  // We no longer force redirect at the top level so logged-in users can still see the landing page.
 
-  if (userId) {
-    redirect("/dashboard");
-  }
 
   return (
     <div className="flex flex-col min-h-screen selection:bg-primary/20 overflow-x-hidden">
@@ -39,10 +38,18 @@ export default async function Home() {
             <Link className="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors" href="#solutions">Solutions</Link>
             <Link className="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors" href="#pricing">Pricing</Link>
             <div className="h-4 w-px bg-border"></div>
-            <Link href="/sign-in" className="text-sm font-bold text-primary hover:underline underline-offset-4">Log In</Link>
-            <Button render={<Link href="/sign-up" />} className="rounded-full px-6 shadow-md shadow-primary/20">
-              Get Started
-            </Button>
+            {userId ? (
+              <Button render={<Link href="/dashboard" />} className="rounded-full px-6 shadow-md shadow-primary/20">
+                Go to Dashboard
+              </Button>
+            ) : (
+              <>
+                <Link href="/sign-in" className="text-sm font-bold text-primary hover:underline underline-offset-4">Log In</Link>
+                <Button render={<Link href="/sign-up" />} className="rounded-full px-6 shadow-md shadow-primary/20">
+                  Get Started
+                </Button>
+              </>
+            )}
           </nav>
 
           {/* Mobile Menu Trigger */}
@@ -59,9 +66,16 @@ export default async function Home() {
                   <Link href="#features" className="text-lg font-bold">Features</Link>
                   <Link href="#solutions" className="text-lg font-bold">Solutions</Link>
                   <Link href="#pricing" className="text-lg font-bold">Pricing</Link>
-                  <div className="h-px bg-border my-2"></div>
-                  <Button render={<Link href="/sign-in" />} variant="outline" className="w-full h-12 rounded-xl">Log In</Button>
-                  <Button render={<Link href="/sign-up" />} className="w-full h-12 rounded-xl">Get Started</Button>
+                  <div className="pt-4 border-t">
+                    {userId ? (
+                      <Button render={<Link href="/dashboard" />} className="w-full rounded-xl">Go to Dashboard</Button>
+                    ) : (
+                      <div className="space-y-4">
+                        <Button render={<Link href="/sign-up" />} className="w-full rounded-xl">Get Started</Button>
+                        <Button render={<Link href="/sign-in" />} variant="outline" className="w-full rounded-xl">Log In</Button>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </DialogContent>
             </Dialog>
@@ -94,9 +108,15 @@ export default async function Home() {
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 pt-6">
-                  <Button render={<Link href="/sign-up" />} size="lg" className="rounded-2xl h-16 px-12 text-lg font-bold shadow-2xl shadow-primary/40 hover:scale-105 transition-transform">
-                    Launch Your Campus <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
+                  {userId ? (
+                    <Button render={<Link href="/dashboard" />} size="lg" className="rounded-2xl h-16 px-12 text-lg font-bold shadow-2xl shadow-primary/40 hover:scale-105 transition-transform">
+                      Go to Your Dashboard <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
+                  ) : (
+                    <Button render={<Link href="/sign-up" />} size="lg" className="rounded-2xl h-16 px-12 text-lg font-bold shadow-2xl shadow-primary/40 hover:scale-105 transition-transform">
+                      Launch Your Campus <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
+                  )}
                   <Link href="#solutions">
                     <Button variant="outline" size="lg" className="rounded-2xl h-16 px-12 text-lg font-bold bg-white/80 backdrop-blur-sm border-slate-200 hover:bg-slate-50">
                       Explore Solutions
