@@ -1,6 +1,0 @@
-[dotenv@17.3.1] injecting env (12) from .env.local -- tip: 🤖 agentic secret storage: https://dotenvx.com/as2
-Connected to DB
-Found existing school: 7cec5e08-ba03-48cd-bea5-2f88792f4bb4
-Altering teachers table...
-Altering students table...
-Database setup complete!
