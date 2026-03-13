@@ -21,7 +21,7 @@ export default async function DashboardRedirect() {
   // Graceful fallback for unassigned users
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4 text-center">
-      <h1 className="text-3xl font-bold mb-4">Welcome to EduSaaS</h1>
+      <h1 className="text-3xl font-bold mb-4">Welcome to CampusCore</h1>
       <p className="text-muted-foreground max-w-md">
         Your account is currently pending role assignment. Please contact your school administrator to get access to your dashboard.
       </p>

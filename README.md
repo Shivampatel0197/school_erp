@@ -1,4 +1,4 @@
-# EduSaaS - Multi-Tenant School ERP Platform
+# CampusCore - Multi-Tenant School ERP Platform
 
 A modern, scalable multi-tenant School ERP SaaS platform built with **Next.js 14**, **Supabase (PostgreSQL)**, **Clerk Authentication**, and **Razorpay**. 
 
@@ -26,8 +26,8 @@ Ready to manage unlimited schools, teachers, students, and parents with isolated
 
 ### 1. Clone & Install
 ```bash
-git clone https://github.com/your-username/edusaas.git
-cd edusaas
+git clone https://github.com/your-username/campuscore.git
+cd campuscore
 npm install
 ```
 

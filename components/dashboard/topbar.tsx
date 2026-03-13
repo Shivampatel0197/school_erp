@@ -21,7 +21,7 @@ export function Topbar() {
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-[280px] p-0 h-[100dvh] rounded-none left-[140px]">
                         <DialogHeader className="p-6 border-b">
-                            <DialogTitle className="text-primary font-black uppercase tracking-tighter">EduSaaS Menu</DialogTitle>
+                            <DialogTitle className="text-primary font-black uppercase tracking-tighter">CampusCore Menu</DialogTitle>
                         </DialogHeader>
                         <SidebarContent />
                     </DialogContent>

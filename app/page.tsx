@@ -22,7 +22,7 @@ export default async function Home() {
               <GraduationCap className="h-6 w-6" />
             </div>
             <span className="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600 tracking-tight">
-              EduSaaS
+              CampusCore
             </span>
           </div>
           
@@ -45,7 +45,7 @@ export default async function Home() {
               </DialogTrigger>
               <DialogContent className="sm:max-w-xs h-full flex flex-col justify-start p-8">
                 <DialogHeader className="mb-8">
-                  <DialogTitle className="text-2xl font-black text-primary">EduSaaS</DialogTitle>
+                  <DialogTitle className="text-2xl font-black text-primary">CampusCore</DialogTitle>
                 </DialogHeader>
                 <div className="flex flex-col gap-6">
                   <Link href="#features" className="text-lg font-bold">Features</Link>
@@ -257,7 +257,7 @@ export default async function Home() {
             <div className="bg-primary rounded-[50px] p-8 md:p-16 text-white text-center space-y-8 relative overflow-hidden shadow-2xl">
               <div className="relative z-10 space-y-4">
                 <h2 className="text-4xl md:text-6xl font-black tracking-tighter">Ready to digitize your classroom?</h2>
-                <p className="text-primary-foreground/80 max-w-xl mx-auto text-lg italic">Join over 200 institutions currently scaling with EduSaaS. One-click setup for any school.</p>
+                <p className="text-primary-foreground/80 max-w-xl mx-auto text-lg italic">Join over 200 institutions currently scaling with CampusCore. One-click setup for any school.</p>
                 <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
                   <Button render={<Link href="/sign-up" />} size="lg" variant="secondary" className="rounded-full h-14 px-10 text-lg font-bold w-full sm:w-auto">
                     Subscribe Your School <ArrowRight className="ml-2 h-5 w-5" />
@@ -284,7 +284,7 @@ export default async function Home() {
               <div className="bg-primary p-2 rounded-xl text-white">
                 <GraduationCap className="h-6 w-6" />
               </div>
-              <span className="text-2xl font-black tracking-tight">EduSaaS</span>
+              <span className="text-2xl font-black tracking-tight">CampusCore</span>
             </div>
             
             <div className="flex gap-12 text-sm text-slate-400">
@@ -294,7 +294,7 @@ export default async function Home() {
             </div>
           </div>
           <div className="mt-12 pt-8 border-t border-slate-800 text-center text-sm text-slate-500">
-            &copy; 2026 EduSaaS Platform. All rights reserved. Designed for excellence.
+            &copy; 2026 CampusCore Platform. All rights reserved. Designed for excellence.
           </div>
         </div>
       </footer>
