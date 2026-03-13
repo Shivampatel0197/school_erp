@@ -23,12 +23,12 @@ export function Sidebar({ className }: SidebarProps) {
     return (
         <div className={cn("hidden md:flex flex-col w-64 border-r bg-white h-full", className)}>
             <div className="p-6">
-                <h2 className="text-2xl font-bold tracking-tight text-primary uppercase">CampusCore</h2>
+                <h2 className="text-2xl font-bold tracking-tight text-primary uppercase">Campusore</h2>
             </div>
             <SidebarContent />
             <div className="p-4 border-t">
                 <div className="text-xs text-muted-foreground text-center">
-                    &copy; 2026 CampusCore v1.0
+                    &copy; 2026 Campusore v1.0
                 </div>
             </div>
         </div>

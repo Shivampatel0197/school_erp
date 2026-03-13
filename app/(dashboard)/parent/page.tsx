@@ -45,7 +45,7 @@ export default function ParentDashboardPage() {
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "rzp_test_placeholder",
         amount: order.amount,
         currency: order.currency,
-        name: "CampusCore School",
+        name: "Campusore School",
         description: "School Fees Payment",
         order_id: order.id,
         handler: function (response: any) {
