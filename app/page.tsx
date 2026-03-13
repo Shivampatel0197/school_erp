@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, GraduationCap, CheckCircle2, ShieldCheck, Zap, Globe, Users, Menu } from "lucide-react";
 import { auth } from "@clerk/nextjs/server";
+import { UserButton } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
@@ -39,16 +40,22 @@ export default async function Home() {
             <Link className="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors" href="#pricing">Pricing</Link>
             <div className="h-4 w-px bg-border"></div>
             {userId ? (
-              <Button render={<Link href="/dashboard" />} className="rounded-full px-6 shadow-md shadow-primary/20">
-                Go to Dashboard
-              </Button>
+              <div className="flex items-center gap-4">
+                <Button render={<Link href="/dashboard" />} className="rounded-full px-6 shadow-md shadow-primary/20">
+                  Go to Dashboard
+                </Button>
+                <div className="h-8 w-px bg-border"></div>
+                <UserButton />
+              </div>
             ) : (
-              <>
-                <Link href="/sign-in" className="text-sm font-bold text-primary hover:underline underline-offset-4">Log In</Link>
+              <div className="flex items-center gap-4">
+                <Button render={<Link href="/sign-in" />} variant="ghost" className="rounded-full px-6 font-bold text-primary">
+                  Log In
+                </Button>
                 <Button render={<Link href="/sign-up" />} className="rounded-full px-6 shadow-md shadow-primary/20">
                   Get Started
                 </Button>
-              </>
+              </div>
             )}
           </nav>
 
@@ -68,11 +75,17 @@ export default async function Home() {
                   <Link href="#pricing" className="text-lg font-bold">Pricing</Link>
                   <div className="pt-4 border-t">
                     {userId ? (
-                      <Button render={<Link href="/dashboard" />} className="w-full rounded-xl">Go to Dashboard</Button>
+                      <div className="space-y-4">
+                        <Button render={<Link href="/dashboard" />} className="w-full h-12 rounded-xl">Go to Dashboard</Button>
+                        <div className="flex items-center justify-between p-4 bg-slate-50 rounded-xl border">
+                          <span className="text-sm font-bold text-slate-600">Account</span>
+                          <UserButton />
+                        </div>
+                      </div>
                     ) : (
                       <div className="space-y-4">
-                        <Button render={<Link href="/sign-up" />} className="w-full rounded-xl">Get Started</Button>
-                        <Button render={<Link href="/sign-in" />} variant="outline" className="w-full rounded-xl">Log In</Button>
+                        <Button render={<Link href="/sign-up" />} className="w-full h-12 rounded-xl">Get Started</Button>
+                        <Button render={<Link href="/sign-in" />} variant="outline" className="w-full h-12 rounded-xl">Log In</Button>
                       </div>
                     )}
                   </div>
@@ -113,9 +126,14 @@ export default async function Home() {
                       Go to Your Dashboard <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
                   ) : (
-                    <Button render={<Link href="/sign-up" />} size="lg" className="rounded-2xl h-16 px-12 text-lg font-bold shadow-2xl shadow-primary/40 hover:scale-105 transition-transform">
-                      Launch Your Campus <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
+                    <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                      <Button render={<Link href="/sign-up" />} size="lg" className="rounded-2xl h-16 px-12 text-lg font-bold shadow-2xl shadow-primary/40 hover:scale-105 transition-transform">
+                        Launch Your Campus <ArrowRight className="ml-2 h-5 w-5" />
+                      </Button>
+                      <Button render={<Link href="/sign-in" />} variant="outline" size="lg" className="rounded-2xl h-16 px-12 text-lg font-bold bg-white/80 backdrop-blur-sm border-slate-200 hover:bg-slate-50">
+                        Log In
+                      </Button>
+                    </div>
                   )}
                   <Link href="#solutions">
                     <Button variant="outline" size="lg" className="rounded-2xl h-16 px-12 text-lg font-bold bg-white/80 backdrop-blur-sm border-slate-200 hover:bg-slate-50">
@@ -334,10 +352,12 @@ export default async function Home() {
               <span className="text-2xl font-black tracking-tight">Campusore</span>
             </Link>
             
-            <div className="flex gap-12 text-sm text-slate-400">
+            <div className="flex flex-wrap justify-center gap-8 md:gap-12 text-sm text-slate-400">
+              <Link href="/sign-in" className="hover:text-white transition-colors font-bold text-slate-300">Log In</Link>
+              <Link href="/sign-up" className="hover:text-white transition-colors font-bold text-slate-300">Sign Up</Link>
               <Link href="#" className="hover:text-white transition-colors">Documentation</Link>
               <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
-              <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
+              <Link href="#" className="hover:text-white transition-colors">Terms</Link>
             </div>
           </div>
           <div className="mt-12 pt-8 border-t border-slate-800 text-center text-sm text-slate-500">
