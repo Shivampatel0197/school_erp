@@ -4,15 +4,28 @@ import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, GraduationCap, Percent, DollarSign, Loader2 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import { useUser } from "@clerk/nextjs";
 
 export function StatsCards() {
+    const { user } = useUser();
+    const schoolId = user?.publicMetadata?.schoolId as string;
     const [counts, setCounts] = useState({ students: 0, teachers: 0 });
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function fetchCounts() {
-            const { count: studentCount } = await supabase.from('students').select('*', { count: 'exact', head: true });
-            const { count: teacherCount } = await supabase.from('teachers').select('*', { count: 'exact', head: true });
+            if (!schoolId) return;
+            setLoading(true);
+            
+            const { count: studentCount } = await supabase
+                .from('students')
+                .select('*', { count: 'exact', head: true })
+                .eq('school_id', schoolId);
+
+            const { count: teacherCount } = await supabase
+                .from('teachers')
+                .select('*', { count: 'exact', head: true })
+                .eq('school_id', schoolId);
             
             setCounts({
                 students: studentCount || 0,
@@ -21,7 +34,7 @@ export function StatsCards() {
             setLoading(false);
         }
         fetchCounts();
-    }, []);
+    }, [schoolId]);
 
     const stats = [
         { title: "Total Students", value: loading ? "..." : counts.students.toString(), description: "Live from database", icon: Users },
@@ -55,4 +68,3 @@ export function StatsCards() {
         </div>
     );
 }
-

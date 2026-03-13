@@ -5,16 +5,26 @@ import { registerSchool } from "@/app/actions/school";
 import { Button } from "@/components/ui/button";
 import { GraduationCap, Building2, MapPin, Mail, ArrowRight, AlertCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
 
 export function SetupSchoolForm() {
   const router = useRouter();
+  const { user, isLoaded } = useUser();
   const [state, formAction, isPending] = useActionState(registerSchool, null);
 
   useEffect(() => {
-    if (state?.success) {
-      router.push("/admin");
+    async function handleSuccess() {
+      if (state?.success && isLoaded && user) {
+        // Force Clerk to reload the session metadata
+        await user.reload();
+        router.push("/admin");
+        router.refresh();
+      }
     }
-  }, [state, router]);
+    if (state?.success) {
+      handleSuccess();
+    }
+  }, [state, router, user, isLoaded]);
 
   return (
     <div className="max-w-md w-full space-y-8">
