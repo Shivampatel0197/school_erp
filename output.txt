@@ -1,0 +1,32 @@
+ Volume in drive C is Windows-SSD
+ Volume Serial Number is 38ED-0299
+
+ Directory of c:\Users\patel\OneDrive\Desktop\FinalERP
+
+13-03-2026  11:25    <DIR>          .
+12-03-2026  15:48    <DIR>          ..
+13-03-2026  11:05             1,028 .env.local
+01-03-2026  19:48               480 .gitignore
+13-03-2026  00:10    <DIR>          .next
+12-03-2026  23:34    <DIR>          app
+12-03-2026  16:05    <DIR>          components
+12-03-2026  16:02               516 components.json
+12-03-2026  16:04    <DIR>          database
+12-03-2026  23:59             2,000 db_setup.js
+12-03-2026  22:50             1,049 env.example
+01-03-2026  19:48               465 eslint.config.mjs
+13-03-2026  00:00    <DIR>          lib
+12-03-2026  23:43               743 middleware.ts
+13-03-2026  11:06               251 next-env.d.ts
+01-03-2026  19:48               133 next.config.ts
+12-03-2026  23:59    <DIR>          node_modules
+13-03-2026  11:25               168 output.txt
+12-03-2026  23:59           401,745 package-lock.json
+12-03-2026  23:59             1,052 package.json
+01-03-2026  19:48                94 postcss.config.mjs
+12-03-2026  16:00    <DIR>          public
+12-03-2026  18:20             2,576 README.md
+13-03-2026  11:24             1,093 tmp_seed.js
+12-03-2026  15:54               666 tsconfig.json
+              16 File(s)        414,059 bytes
+               9 Dir(s)  151,362,363,392 bytes free
