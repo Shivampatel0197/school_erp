@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { MoreHorizontal, Plus, Search, Pencil, Trash2 } from "lucide-react";
+import { useUser } from "@clerk/nextjs";
 
 export default function TeachersPage() {
     const [search, setSearch] = useState("");
@@ -34,9 +35,17 @@ export default function TeachersPage() {
     const [contactDetails, setContactDetails] = useState("");
     const [joinedDate, setJoinedDate] = useState("");
 
+    const { user } = useUser();
+    const school_id = user?.publicMetadata?.schoolId as string;
+
     const fetchTeachers = async () => {
+        if (!school_id) return;
         setLoading(true);
-        const { data, error } = await supabase.from('teachers').select('*').order('created_at', { ascending: false });
+        const { data, error } = await supabase
+            .from('teachers')
+            .select('*')
+            .eq('school_id', school_id)
+            .order('created_at', { ascending: false });
         if (data) {
             setTeachers(data);
         }
@@ -45,17 +54,11 @@ export default function TeachersPage() {
 
     useEffect(() => {
         fetchTeachers();
-    }, []);
+    }, [school_id]);
 
     const handleSaveTeacher = async () => {
         if (!name) return alert("Name is required");
-
-        // We need a school_id. In a real app, this comes from the logged-in admin's metadata.
-        // For now, we will fetch the first school_id available.
-        const { data: schools } = await supabase.from('schools').select('id').limit(1);
-        if (!schools || schools.length === 0) return alert("No schools found in DB to link teacher to.");
-        
-        const school_id = schools[0].id;
+        if (!school_id) return alert("You must be linked to a school to add teachers.");
 
         const { error } = await supabase.from('teachers').insert([
             {
@@ -118,6 +121,10 @@ export default function TeachersPage() {
                             <div className="space-y-2">
                                 <label className="text-sm font-medium">Full Name</label>
                                 <Input value={name} onChange={e => setName(e.target.value)} placeholder="Enter full name" />
+                            </div>
+                            <div className="space-y-2">
+                                <label className="text-sm font-medium">Teacher Email</label>
+                                <Input type="email" placeholder="Email for login (e.g. teacher@school.com)" />
                             </div>
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="space-y-2">

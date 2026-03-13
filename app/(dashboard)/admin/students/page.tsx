@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { MoreHorizontal, Plus, Search, Pencil, Trash2 } from "lucide-react";
+import { useUser } from "@clerk/nextjs";
 
 export default function StudentsPage() {
     const [search, setSearch] = useState("");
@@ -34,10 +35,18 @@ export default function StudentsPage() {
     const [className, setClassName] = useState("");
     const [dob, setDob] = useState("");
     const [parentName, setParentName] = useState("");
-
+ 
+    const { user } = useUser();
+    const school_id = user?.publicMetadata?.schoolId as string;
+ 
     const fetchStudents = async () => {
+        if (!school_id) return;
         setLoading(true);
-        const { data, error } = await supabase.from('students').select('*').order('created_at', { ascending: false });
+        const { data, error } = await supabase
+            .from('students')
+            .select('*')
+            .eq('school_id', school_id)
+            .order('created_at', { ascending: false });
         if (data) {
             setStudents(data);
         }
@@ -46,17 +55,13 @@ export default function StudentsPage() {
 
     useEffect(() => {
         fetchStudents();
-    }, []);
+    }, [school_id]);
 
     const handleSaveStudent = async () => {
         if (!firstName || !lastName || !admissionNumber) {
             return alert("First Name, Last Name, and Admission Number are required!");
         }
-
-        const { data: schools } = await supabase.from('schools').select('id').limit(1);
-        if (!schools || schools.length === 0) return alert("No schools found in DB to link student to.");
-        
-        const school_id = schools[0].id;
+        if (!school_id) return alert("You must be linked to a school to add students.");
 
         const { error } = await supabase.from('students').insert([
             {
@@ -128,6 +133,10 @@ export default function StudentsPage() {
                                     <label className="text-sm font-medium">Last Name</label>
                                     <Input value={lastName} onChange={e => setLastName(e.target.value)} placeholder="Enter last name" />
                                 </div>
+                            </div>
+                            <div className="space-y-2">
+                                <label className="text-sm font-medium">Student Email</label>
+                                <Input type="email" placeholder="Email for login (e.g. student@school.com)" />
                             </div>
                             <div className="space-y-2">
                                 <label className="text-sm font-medium">Admission Number</label>
