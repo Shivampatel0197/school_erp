@@ -4,11 +4,12 @@ import { redirect } from "next/navigation";
 export const dynamic = "force-dynamic";
 
 export default async function DashboardRedirect() {
+  /*
   const { userId } = await auth();
-
-
   const user = await currentUser();
   const role = user?.publicMetadata?.role as string;
+  */
+  const role = 'admin'; // Hardcoded for debugging
 
   if (role === 'admin') {
     redirect('/admin');

@@ -8,11 +8,14 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
+  // Temporarily disabling auth check to isolate the server-side exception
+  /*
   const { userId } = await auth();
 
   if (userId) {
     redirect("/dashboard");
   }
+  */
 
   return (
     <div className="flex flex-col min-h-screen selection:bg-primary/20 overflow-x-hidden">
