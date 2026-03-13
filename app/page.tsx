@@ -32,9 +32,9 @@ export default async function Home() {
             <Link className="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors" href="#pricing">Pricing</Link>
             <div className="h-4 w-px bg-border"></div>
             <Link href="/sign-in" className="text-sm font-bold text-primary hover:underline underline-offset-4">Log In</Link>
-            <Link href="/sign-up">
-              <Button className="rounded-full px-6 shadow-md shadow-primary/20">Get Started</Button>
-            </Link>
+            <Button render={<Link href="/sign-up" />} className="rounded-full px-6 shadow-md shadow-primary/20">
+              Get Started
+            </Button>
           </nav>
 
           {/* Mobile Menu Trigger */}
@@ -52,12 +52,8 @@ export default async function Home() {
                   <Link href="#solutions" className="text-lg font-bold">Solutions</Link>
                   <Link href="#pricing" className="text-lg font-bold">Pricing</Link>
                   <div className="h-px bg-border my-2"></div>
-                  <Link href="/sign-in">
-                    <Button variant="outline" className="w-full h-12 rounded-xl">Log In</Button>
-                  </Link>
-                  <Link href="/sign-up">
-                    <Button className="w-full h-12 rounded-xl">Get Started</Button>
-                  </Link>
+                  <Button render={<Link href="/sign-in" />} variant="outline" className="w-full h-12 rounded-xl">Log In</Button>
+                  <Button render={<Link href="/sign-up" />} className="w-full h-12 rounded-xl">Get Started</Button>
                 </div>
               </DialogContent>
             </Dialog>
@@ -85,11 +81,9 @@ export default async function Home() {
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-                <Link href="/sign-up">
-                  <Button size="lg" className="rounded-full h-14 px-10 text-lg shadow-xl shadow-primary/30 w-full sm:w-auto">
-                    Deploy to your School <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
+                <Button render={<Link href="/sign-up" />} size="lg" className="rounded-full h-14 px-10 text-lg shadow-xl shadow-primary/30 w-full sm:w-auto">
+                  Deploy to your School <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
                 <Link href="#pricing">
                   <Button variant="outline" size="lg" className="rounded-full h-14 px-10 text-lg bg-white/50 w-full sm:w-auto">
                     Book a Demo
@@ -239,9 +233,7 @@ export default async function Home() {
                   <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> Teacher & Parent Apps</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> Exams & Result Entry</li>
                 </ul>
-                <Link href="/sign-up">
-                  <Button className="w-full rounded-full bg-primary hover:bg-primary/90">Get Started Now</Button>
-                </Link>
+                <Button render={<Link href="/sign-up" />} className="w-full rounded-full bg-primary hover:bg-primary/90">Get Started Now</Button>
               </div>
 
               {/* Enterprise Plan */}
@@ -267,11 +259,9 @@ export default async function Home() {
                 <h2 className="text-4xl md:text-6xl font-black tracking-tighter">Ready to digitize your classroom?</h2>
                 <p className="text-primary-foreground/80 max-w-xl mx-auto text-lg italic">Join over 200 institutions currently scaling with EduSaaS. One-click setup for any school.</p>
                 <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link href="/sign-up">
-                    <Button size="lg" variant="secondary" className="rounded-full h-14 px-10 text-lg font-bold w-full sm:w-auto">
-                      Subscribe Your School <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
-                  </Link>
+                  <Button render={<Link href="/sign-up" />} size="lg" variant="secondary" className="rounded-full h-14 px-10 text-lg font-bold w-full sm:w-auto">
+                    Subscribe Your School <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
                   <Button size="lg" variant="outline" className="rounded-full h-14 px-10 text-lg border-white/20 hover:bg-white/10 w-full sm:w-auto">
                     Request Pricing PDF
                   </Button>
