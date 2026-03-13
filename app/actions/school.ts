@@ -49,8 +49,8 @@ export async function registerSchool(formData: FormData) {
   }
 
   // 3. Update Clerk metadata with role and school_id
-  const client = await clerkClient();
-  await client.users.updateUserMetadata(userId, {
+  const clerk = await clerkClient();
+  await clerk.users.updateUser(userId, {
     publicMetadata: {
       role: "admin",
       schoolId: school.id,
