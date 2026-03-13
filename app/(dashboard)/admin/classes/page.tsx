@@ -1,9 +1,15 @@
+"use client";
+
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Plus, BookOpen, Users, Settings } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 export default function ClassesPage() {
+    const [isOpen, setIsOpen] = useState(false);
+    
     const classes = [
         { title: "Grade 10 - A", students: 32, subjects: ["Math", "Physics", "English"], teacher: "Dr. Turing" },
         { title: "Grade 10 - B", students: 28, subjects: ["Math", "Chemistry", "English"], teacher: "Ms. Smith" },
@@ -18,8 +24,27 @@ export default function ClassesPage() {
                     <p className="text-muted-foreground">Manage school classes, sections, and assigned subjects.</p>
                 </div>
                 <div className="flex gap-2">
-                    <Button variant="outline"><BookOpen className="mr-2 h-4 w-4" /> Add Subject</Button>
-                    <Button><Plus className="mr-2 h-4 w-4" /> Add Class</Button>
+                    <Dialog>
+                        <DialogTrigger render={<Button variant="outline"><BookOpen className="mr-2 h-4 w-4" /> Add Subject</Button>} />
+                        <DialogContent>
+                            <DialogHeader><DialogTitle>Add Subject</DialogTitle></DialogHeader>
+                            <div className="space-y-4 py-4"><Input placeholder="Subject Name" /><Button className="w-full">Create Subject</Button></div>
+                        </DialogContent>
+                    </Dialog>
+
+                    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+                        <DialogTrigger render={<Button><Plus className="mr-2 h-4 w-4" /> Add Class</Button>} />
+                        <DialogContent>
+                            <DialogHeader>
+                                <DialogTitle>Create New Class</DialogTitle>
+                            </DialogHeader>
+                            <div className="space-y-4 py-4">
+                                <Input placeholder="Class Name (e.g. Grade 11)" />
+                                <Input placeholder="Section (e.g. A)" />
+                                <Button className="w-full" onClick={() => setIsOpen(false)}>Save Class</Button>
+                            </div>
+                        </DialogContent>
+                    </Dialog>
                 </div>
             </div>
 

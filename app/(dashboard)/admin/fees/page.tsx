@@ -13,14 +13,17 @@ import {
 } from "@/components/ui/table";
 import { Plus, Search, DollarSign } from "lucide-react";
 
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+
 const initialFees = [
-    { id: "FEE001", student: "Alice Johnson", amount: "$500", status: "Paid", dueDate: "2026-04-01", datePaid: "2026-03-10" },
-    { id: "FEE002", student: "Bob Smith", amount: "$500", status: "Unpaid", dueDate: "2026-04-01", datePaid: "-" },
-    { id: "FEE003", student: "Charlie Brown", amount: "$450", status: "Overdue", dueDate: "2026-03-01", datePaid: "-" },
+    { id: "FEE001", student: "Alice Johnson", amount: "₹15,000", status: "Paid", dueDate: "2026-04-01", datePaid: "2026-03-10" },
+    { id: "FEE002", student: "Bob Smith", amount: "₹15,000", status: "Unpaid", dueDate: "2026-04-01", datePaid: "-" },
+    { id: "FEE003", student: "Charlie Brown", amount: "₹12,450", status: "Overdue", dueDate: "2026-03-01", datePaid: "-" },
 ];
 
 export default function FeesPage() {
     const [search, setSearch] = useState("");
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
         <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
@@ -29,21 +32,32 @@ export default function FeesPage() {
                     <h2 className="text-3xl font-bold tracking-tight">Fees & Payments</h2>
                     <p className="text-muted-foreground">Track student fee payments, invoices, and due amounts.</p>
                 </div>
-                <Button><Plus className="mr-2 h-4 w-4" /> Create Invoice</Button>
+                <Dialog open={isOpen} onOpenChange={setIsOpen}>
+                    <DialogTrigger render={<Button><Plus className="mr-2 h-4 w-4" /> Create Invoice</Button>} />
+                    <DialogContent>
+                        <DialogHeader><DialogTitle>Generate New Invoice</DialogTitle></DialogHeader>
+                        <div className="space-y-4 py-4">
+                            <Input placeholder="Student Name" />
+                            <Input placeholder="Amount (e.g. 5000)" type="number" />
+                            <Input type="date" placeholder="Due Date" />
+                            <Button className="w-full" onClick={() => setIsOpen(false)}>Create Invoice</Button>
+                        </div>
+                    </DialogContent>
+                </Dialog>
             </div>
 
             <div className="grid gap-4 md:grid-cols-3 mb-6">
-                <div className="border rounded-lg p-4 bg-green-50">
+                <div className="border rounded-lg p-4 bg-green-50 shadow-sm">
                     <div className="text-sm font-medium text-green-700">Total Collected</div>
-                    <div className="text-2xl font-bold text-green-800">$42,500</div>
+                    <div className="text-2xl font-bold text-green-800">₹4,25,000</div>
                 </div>
-                <div className="border rounded-lg p-4 bg-amber-50">
+                <div className="border rounded-lg p-4 bg-amber-50 shadow-sm">
                     <div className="text-sm font-medium text-amber-700">Total Pending</div>
-                    <div className="text-2xl font-bold text-amber-800">$8,000</div>
+                    <div className="text-2xl font-bold text-amber-800">₹80,000</div>
                 </div>
-                <div className="border rounded-lg p-4 bg-red-50">
+                <div className="border rounded-lg p-4 bg-red-50 shadow-sm">
                     <div className="text-sm font-medium text-red-700">Total Overdue</div>
-                    <div className="text-2xl font-bold text-red-800">$1,500</div>
+                    <div className="text-2xl font-bold text-red-800">₹15,000</div>
                 </div>
             </div>
 
