@@ -13,7 +13,13 @@ export default async function Home() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen selection:bg-primary/20 hero-gradient">
+    <div className="flex flex-col min-h-screen selection:bg-primary/20 overflow-x-hidden">
+      {/* Dynamic Background Elements */}
+      <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-primary/20 rounded-full blur-[120px] animate-pulse"></div>
+        <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-purple-500/10 rounded-full blur-[120px]"></div>
+        <div className="absolute top-[20%] left-[10%] w-[30%] h-[30%] bg-blue-500/5 rounded-full blur-[100px]"></div>
+      </div>
       {/* Navbar */}
       <header className="fixed top-0 w-full z-50 glass border-b">
         <div className="container mx-auto px-4 h-20 flex items-center justify-between">
@@ -61,142 +67,159 @@ export default async function Home() {
         </div>
       </header>
 
-      <main className="flex-1 pt-32">
+      <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative overflow-hidden py-20 lg:py-32">
+        <section className="relative pt-40 pb-20 lg:pt-56 lg:pb-32 overflow-hidden text-left">
           <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-4xl mx-auto text-center space-y-8">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest animate-pulse">
-                <Zap className="h-3 w-3" /> Now in V1.0 - Next Gen Schooling
-              </div>
-              
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[0.9] text-slate-900">
-                The Complete <br />
-                <span className="text-primary italic">School Management</span> <br />
-                OS for Modernity
-              </h1>
-              
-              <p className="max-w-2xl mx-auto text-xl text-muted-foreground leading-relaxed">
-                Streamline administration, empower teachers, and engage parents with our all-in-one ERP solution. Trusted by 200+ schools worldwide.
-              </p>
+            <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-20">
+              <div className="lg:w-3/5 space-y-10 text-center lg:text-left">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 backdrop-blur-md border border-primary/20 text-primary text-xs font-bold uppercase tracking-[0.2em] shadow-sm">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                  </span>
+                  Version 2.0 • The Future of Education
+                </div>
+                
+                <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[0.8] text-slate-950">
+                  Operating <br />
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-600 to-indigo-600 font-serif italic pr-4">Excellence</span> <br />
+                  For Schools
+                </h1>
+                
+                <p className="max-w-2xl mx-auto lg:mx-0 text-xl md:text-2xl text-slate-600 font-medium leading-relaxed">
+                  Campusore is the definitive multi-tenant ERP for forward-thinking institutions. Transform administration into a competitive advantage.
+                </p>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-                <Button render={<Link href="/sign-up" />} size="lg" className="rounded-full h-14 px-10 text-lg shadow-xl shadow-primary/30 w-full sm:w-auto">
-                  Deploy to your School <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-                <Link href="#pricing">
-                  <Button variant="outline" size="lg" className="rounded-full h-14 px-10 text-lg bg-white/50 w-full sm:w-auto">
-                    Book a Demo
+                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 pt-6">
+                  <Button render={<Link href="/sign-up" />} size="lg" className="rounded-2xl h-16 px-12 text-lg font-bold shadow-2xl shadow-primary/40 hover:scale-105 transition-transform">
+                    Launch Your Campus <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
-                </Link>
+                  <Link href="#solutions">
+                    <Button variant="outline" size="lg" className="rounded-2xl h-16 px-12 text-lg font-bold bg-white/80 backdrop-blur-sm border-slate-200 hover:bg-slate-50">
+                      Explore Solutions
+                    </Button>
+                  </Link>
+                </div>
               </div>
               
-              <div className="flex items-center justify-center gap-8 pt-8 opacity-50 grayscale hover:grayscale-0 transition-all">
-                <div className="text-sm font-bold tracking-widest text-slate-400">TRUSTED BY</div>
-                <Globe className="h-8 w-8" />
-                <Zap className="h-8 w-8" />
-                <ShieldCheck className="h-8 w-8" />
+              {/* Product Preview / Visual */}
+              <div className="lg:w-2/5 relative animate-float">
+                <div className="w-full aspect-square bg-gradient-to-br from-primary/20 to-purple-500/10 rounded-[60px] border border-white/50 backdrop-blur-3xl shadow-2xl flex items-center justify-center p-8">
+                  <div className="w-full h-full bg-white rounded-[40px] shadow-inner overflow-hidden border border-slate-100 p-6 space-y-4">
+                    <div className="flex items-center justify-between border-b pb-4">
+                      <div className="h-4 w-24 bg-slate-100 rounded-full"></div>
+                      <div className="h-8 w-8 bg-primary/10 rounded-full text-primary flex items-center justify-center">
+                        <Users className="h-4 w-4" />
+                      </div>
+                    </div>
+                    <div className="space-y-3">
+                      <div className="h-8 w-full bg-slate-50 rounded-xl"></div>
+                      <div className="h-8 w-[80%] bg-slate-50 rounded-xl"></div>
+                      <div className="h-8 w-[90%] bg-slate-100 rounded-xl"></div>
+                    </div>
+                    <div className="pt-4">
+                      <div className="h-32 w-full bg-primary/5 rounded-2xl border border-dashed border-primary/20"></div>
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute -top-10 -right-10 w-40 h-40 bg-purple-500/20 rounded-full blur-3xl"></div>
               </div>
             </div>
           </div>
-          
-          {/* Abstract Decorations */}
-          <div className="absolute top-1/2 left-0 w-64 h-64 bg-primary/20 rounded-full blur-[120px] -z-10 animate-float"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-[150px] -z-10"></div>
+        </section>
+
+        {/* Stats Bar */}
+        <section className="py-12 bg-slate-950 text-white overflow-hidden relative border-y border-white/5">
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="flex flex-wrap items-center justify-center md:justify-between gap-12 text-center">
+              <div className="space-y-1">
+                <div className="text-3xl font-black text-primary">500+</div>
+                <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Institutions</div>
+              </div>
+              <div className="space-y-1">
+                <div className="text-3xl font-black text-primary">1M+</div>
+                <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Active Users</div>
+              </div>
+              <div className="space-y-1">
+                <div className="text-3xl font-black text-primary">99.9%</div>
+                <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Uptime SLA</div>
+              </div>
+              <div className="space-y-1">
+                <div className="text-3xl font-black text-primary">24/7</div>
+                <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Live Support</div>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* Features Section */}
-        <section id="features" className="py-24 bg-white">
-          <div className="container mx-auto px-4 text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Powerful Features for Modern Schools</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">Everything you need to manage your institution efficiently in one unified platform.</p>
+        <section id="features" className="py-32 bg-white relative">
+          <div className="container mx-auto px-4 text-center mb-24">
+            <h2 className="text-5xl md:text-6xl font-black tracking-tighter mb-6 underline transition-all decoration-primary/30 hover:decoration-primary">Powerful <span className="italic text-primary">Capabilities</span></h2>
+            <p className="text-slate-500 max-w-2xl mx-auto text-xl leading-relaxed font-medium">Engineered for institutions that demand excellence. Unified infrastructure for every department.</p>
           </div>
           <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-3 gap-12">
-              <div className="space-y-4 p-8 rounded-3xl border hover:shadow-2xl hover:border-primary/20 transition-all bg-slate-50/50 group">
-                <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
-                  <ShieldCheck className="h-6 w-6" />
+            <div className="grid md:grid-cols-3 gap-10">
+              {[
+                { title: "Isolation Control", desc: "Advanced multi-tenant architecture with kernel-level data isolation via Supabase RLS.", icon: ShieldCheck, color: "bg-blue-50 text-blue-600" },
+                { title: "Financial Ledger", desc: "Native Razorpay integration with automated invoicing, aging reports, and tax compliance.", icon: Zap, color: "bg-amber-50 text-amber-600" },
+                { title: "Smart Flow", desc: "Automated student lifecycle management, from digital admissions to cloud marksheets.", icon: CheckCircle2, color: "bg-emerald-50 text-emerald-600" },
+                { title: "Faculty Hub", desc: "Professional grade teacher tools for curriculum planning, grading, and direct communication.", icon: Users, color: "bg-indigo-50 text-indigo-600" },
+                { title: "Parent Portal", desc: "Zero-latency parent engagement with real-time academic progress and fee transparency.", icon: Globe, color: "bg-rose-50 text-rose-600" },
+                { title: "Campus Engine", desc: "High-performance campus monitoring with live attendance and behavioral reporting.", icon: GraduationCap, color: "bg-purple-50 text-purple-600" },
+              ].map((feat, i) => (
+                <div key={i} className="group relative p-12 rounded-[50px] border border-slate-100 bg-white hover:border-primary/20 hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] transition-all duration-700">
+                  <div className={`w-16 h-16 rounded-[22px] ${feat.color} flex items-center justify-center mb-10 group-hover:scale-110 transition-transform duration-500`}>
+                    <feat.icon className="h-8 w-8" />
+                  </div>
+                  <h3 className="text-3xl font-black mb-4 tracking-tight group-hover:text-primary transition-colors">{feat.title}</h3>
+                  <p className="text-slate-500 leading-relaxed font-medium text-lg">{feat.desc}</p>
                 </div>
-                <h3 className="text-2xl font-bold">Data Isolation</h3>
-                <p className="text-muted-foreground leading-relaxed">Multi-tenant architecture ensuring your school data remains private and secure using Supabase RLS.</p>
-              </div>
-              <div className="space-y-4 p-8 rounded-3xl border hover:shadow-2xl hover:border-primary/20 transition-all bg-slate-50/50 group">
-                <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
-                  <Zap className="h-6 w-6" />
-                </div>
-                <h3 className="text-2xl font-bold">Real-time Fees</h3>
-                <p className="text-muted-foreground leading-relaxed">Integrated Razorpay payments with instant invoicing and overdue tracking for seamless accounting.</p>
-              </div>
-              <div className="space-y-4 p-8 rounded-3xl border hover:shadow-2xl hover:border-primary/20 transition-all bg-slate-50/50 group">
-                <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
-                  <CheckCircle2 className="h-6 w-6" />
-                </div>
-                <h3 className="text-2xl font-bold">Smart Attendance</h3>
-                <p className="text-muted-foreground leading-relaxed">Automated attendance taking for teachers with instant Parent notifications and historical reports.</p>
-              </div>
-              <div className="space-y-4 p-8 rounded-3xl border hover:shadow-2xl hover:border-primary/20 transition-all bg-slate-50/50 group">
-                <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
-                  <Users className="h-6 w-6" />
-                </div>
-                <h3 className="text-2xl font-bold">Teacher Portals</h3>
-                <p className="text-muted-foreground leading-relaxed">Dedicated dashboards for faculty to manage assignments, exams, and student performance metrics.</p>
-              </div>
-              <div className="space-y-4 p-8 rounded-3xl border hover:shadow-2xl hover:border-primary/20 transition-all bg-slate-50/50 group">
-                <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
-                  <Globe className="h-6 w-6" />
-                </div>
-                <h3 className="text-2xl font-bold">Parent Mobile Apps</h3>
-                <p className="text-muted-foreground leading-relaxed">Instant updates for parents on their child's progress, attendance, and school announcements.</p>
-              </div>
-              <div className="space-y-4 p-8 rounded-3xl border hover:shadow-2xl hover:border-primary/20 transition-all bg-slate-50/50 group">
-                <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
-                  <GraduationCap className="h-6 w-6" />
-                </div>
-                <h3 className="text-2xl font-bold">Exam Management</h3>
-                <p className="text-muted-foreground leading-relaxed">Create exams, generate marksheet, and track results across different grades automatically.</p>
-              </div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* Solutions Section */}
-        <section id="solutions" className="py-24 bg-slate-50">
+        <section id="solutions" className="py-32 bg-slate-50 relative overflow-hidden">
           <div className="container mx-auto px-4">
-            <div className="flex flex-col lg:flex-row items-center gap-16">
-              <div className="lg:w-1/2 space-y-8">
-                <h2 className="text-4xl lg:text-5xl font-bold leading-tight">Tailored Solutions for <span className="text-primary italic">Every Role</span></h2>
-                <div className="space-y-6">
-                  <div className="flex gap-4 p-4 rounded-2xl bg-white shadow-sm border border-slate-100">
-                    <div className="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">1</div>
-                    <div>
-                      <h4 className="font-bold text-lg text-slate-900 text-left">For Administrators</h4>
-                      <p className="text-muted-foreground text-left">Manage the entire school from a high-level cockpit with financial and academic insights.</p>
+            <div className="flex flex-col lg:flex-row items-center gap-24">
+              <div className="lg:w-1/2 space-y-12">
+                <div className="space-y-4">
+                  <h2 className="text-5xl lg:text-6xl font-black leading-[0.9] tracking-tighter">Unified OS for <br /><span className="text-primary italic">Every Stakeholder</span></h2>
+                  <p className="text-xl text-slate-500 font-medium">One platform, zero friction. Whether you&apos;re an admin overseeing thousands or a parent checking grades.</p>
+                </div>
+                
+                <div className="space-y-8">
+                  {[
+                    { title: "For Administrators", desc: "Global school cockpit with deep analytics and financial transparency.", icon: Users },
+                    { title: "For Educators", desc: "Intuitive workflows for attendance, grading, and digital classroom management.", icon: Zap },
+                    { title: "For Families", desc: "Real-time mobile updates for progress, fees, and institution events.", icon: Globe }
+                  ].map((item, i) => (
+                    <div key={i} className="flex gap-6 p-6 rounded-[32px] bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 group hover:border-primary/20 transition-all">
+                      <div className="w-14 h-14 rounded-2xl bg-slate-50 text-slate-400 group-hover:bg-primary group-hover:text-white flex items-center justify-center shrink-0 transition-all font-black text-xl">0{i+1}</div>
+                      <div>
+                        <h4 className="font-black text-2xl text-slate-900 group-hover:text-primary transition-colors">{item.title}</h4>
+                        <p className="text-slate-500 font-medium">{item.desc}</p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex gap-4 p-4 rounded-2xl bg-white shadow-sm border border-slate-100">
-                    <div className="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">2</div>
-                    <div>
-                      <h4 className="font-bold text-lg text-slate-900 text-left">For Teachers</h4>
-                      <p className="text-muted-foreground text-left">Focus on teaching, not paperwork. Simple tools for attendance, grades, and communication.</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-4 p-4 rounded-2xl bg-white shadow-sm border border-slate-100">
-                    <div className="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">3</div>
-                    <div>
-                      <h4 className="font-bold text-lg text-slate-900 text-left">For Parents & Students</h4>
-                      <p className="text-muted-foreground text-left">Stay connected and updated with real-time academic progress and fee reminders.</p>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
-              <div className="lg:w-1/2 bg-primary/5 rounded-[40px] p-8 border border-primary/10 relative">
-                <div className="aspect-square bg-white rounded-3xl shadow-2xl flex items-center justify-center p-12 animate-float">
-                  <div className="text-center space-y-4">
-                    <div className="text-primary font-black text-6xl italic">98%</div>
-                    <div className="font-bold text-xl uppercase tracking-widest text-slate-400">School Efficiency Increase</div>
+              <div className="lg:w-1/2 relative">
+                <div className="aspect-square bg-white rounded-[60px] shadow-2xl overflow-hidden border border-slate-100 p-2 relative group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-purple-500/5 group-hover:opacity-0 transition-opacity"></div>
+                  <div className="w-full h-full rounded-[50px] bg-slate-50 flex items-center justify-center p-12">
+                     <div className="text-center space-y-6">
+                        <div className="text-primary font-black text-9xl italic tracking-tighter animate-pulse">98%</div>
+                        <div className="font-black text-2xl uppercase tracking-[0.2em] text-slate-400">Efficiency Surge</div>
+                     </div>
                   </div>
                 </div>
-                <div className="absolute -bottom-8 -right-8 w-48 h-48 bg-purple-500 rounded-3xl -z-10 blur-3xl opacity-20"></div>
+                {/* Floating Elements */}
+                <div className="absolute -top-12 -left-12 w-32 h-32 bg-primary rounded-3xl rotate-12 -z-10 blur-2xl opacity-10"></div>
+                <div className="absolute -bottom-12 -right-12 w-48 h-48 bg-purple-500 rounded-full -z-10 blur-3xl opacity-10 animate-pulse"></div>
               </div>
             </div>
           </div>
@@ -252,25 +275,25 @@ export default async function Home() {
         </section>
 
         {/* Subscription CTA for Schools */}
-        <section id="subscribe" className="py-24">
+        <section id="subscribe" className="py-32">
           <div className="container mx-auto px-4">
-            <div className="bg-primary rounded-[50px] p-8 md:p-16 text-white text-center space-y-8 relative overflow-hidden shadow-2xl">
-              <div className="relative z-10 space-y-4">
-                <h2 className="text-4xl md:text-6xl font-black tracking-tighter">Ready to digitize your classroom?</h2>
-                <p className="text-primary-foreground/80 max-w-xl mx-auto text-lg italic">Join over 200 institutions currently scaling with Campusore. One-click setup for any school.</p>
-                <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button render={<Link href="/sign-up" />} size="lg" variant="secondary" className="rounded-full h-14 px-10 text-lg font-bold w-full sm:w-auto">
-                    Subscribe Your School <ArrowRight className="ml-2 h-5 w-5" />
+            <div className="bg-slate-950 rounded-[60px] p-12 md:p-24 text-white text-center space-y-12 relative overflow-hidden shadow-2xl">
+              <div className="relative z-10 space-y-6">
+                <h2 className="text-5xl md:text-8xl font-black tracking-tighter leading-[0.8]">Ready to scale? <br /> <span className="text-primary italic">Join the elite.</span></h2>
+                <p className="text-slate-400 max-w-xl mx-auto text-xl font-medium">Campusore is chosen by over 500 institutions for its uncompromising performance and security. Deploy in minutes.</p>
+                <div className="pt-8 flex flex-col sm:flex-row gap-6 justify-center">
+                  <Button render={<Link href="/sign-up" />} size="lg" className="rounded-2xl h-16 px-12 text-lg font-black shadow-xl shadow-primary/20 w-full sm:w-auto">
+                    Get Started Instantly <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
-                  <Button size="lg" variant="outline" className="rounded-full h-14 px-10 text-lg border-white/20 hover:bg-white/10 w-full sm:w-auto">
-                    Request Pricing PDF
+                  <Button size="lg" variant="outline" className="rounded-2xl h-16 px-12 text-lg font-bold border-white/10 hover:bg-white/5 w-full sm:w-auto backdrop-blur-md">
+                    Talk to our Solution Team
                   </Button>
                 </div>
               </div>
               
               {/* Background Glows */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-white/20 rounded-full blur-[100px] -z-0"></div>
-              <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/30 rounded-full blur-[100px] -z-0"></div>
+              <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary rounded-full blur-[120px] opacity-20 animate-pulse"></div>
+              <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-purple-600 rounded-full blur-[120px] opacity-20"></div>
             </div>
           </div>
         </section>
