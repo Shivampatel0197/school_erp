@@ -1,6 +1,8 @@
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { registerSchool } from "@/app/actions/school";
+
+export const dynamic = "force-dynamic";
 import { Button } from "@/components/ui/button";
 import { GraduationCap, Building2, MapPin, Mail, ArrowRight } from "lucide-react";
 
