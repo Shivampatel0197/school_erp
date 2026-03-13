@@ -18,13 +18,6 @@ export default async function DashboardRedirect() {
     redirect('/parent');
   }
 
-  // Graceful fallback for unassigned users
-  return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4 text-center">
-      <h1 className="text-3xl font-bold mb-4">Welcome to Campusore</h1>
-      <p className="text-muted-foreground max-w-md">
-        Your account is currently pending role assignment. Please contact your school administrator to get access to your dashboard.
-      </p>
-    </div>
-  );
+  // If no role is assigned, this is likely a new principal signed up from landing page
+  redirect('/setup-school');
 }
